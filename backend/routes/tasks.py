@@ -60,36 +60,36 @@ def update_task(task_id):
     if data["status"] == "completed":
 
         task = supabase.table("tasks") \
-        .select("title,assigned_to,created_by") \
-        .eq("id", task_id) \
-        .single() \
-        .execute()
+            .select("title,assigned_to,created_by") \
+            .eq("id", task_id) \
+            .single() \
+            .execute()
 
-    creator = supabase.table("users") \
-        .select("email,name") \
-        .eq("id", task.data["created_by"]) \
-        .single() \
-        .execute()
+        creator = supabase.table("users") \
+            .select("email,name") \
+            .eq("id", task.data["created_by"]) \
+            .single() \
+            .execute()
 
-    assignee = supabase.table("users") \
-        .select("name") \
-        .eq("id", task.data["assigned_to"]) \
-        .single() \
-        .execute()
+        assignee = supabase.table("users") \
+            .select("name") \
+            .eq("id", task.data["assigned_to"]) \
+            .single() \
+            .execute()
 
-    send_email(
-        creator.data["email"],
-        "Task Completed",
-        f"""
-        Hello {creator.data['name']},
+        send_email(
+            creator.data["email"],
+            "Task Completed",
+            f"""
+            Hello {creator.data['name']},
 
-        The task "{task.data['title']}" has been completed by {assignee.data['name']}.
+            The task "{task.data['title']}" has been completed by {assignee.data['name']}.
 
-        You can log in to Task Manager to review it.
-        """
-        )
+            You can log in to Task Manager to review it.
+            """
+            )
 
-    return jsonify(response.data)
+        return jsonify(response.data)
 
 @tasks_bp.route("/tasks/<task_id>", methods=["DELETE"])
 def delete_task(task_id):

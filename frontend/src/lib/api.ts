@@ -1,7 +1,5 @@
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-fetch(`${API_URL}/tasks`)
-
 export const getTasks = async () => {
   const res = await fetch(`${API_URL}/tasks`);
   return res.json();
