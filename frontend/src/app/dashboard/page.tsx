@@ -90,7 +90,6 @@ export default function Dashboard() {
   return (
     <div className="p-8 max-w-5xl mx-auto">
 
-      {/* Header */}
       <div className="flex justify-between items-center mb-8">
         <div>
           <h1 className="text-4xl font-bold">
@@ -110,7 +109,6 @@ export default function Dashboard() {
         </button>
       </div>
 
-      {/* Stats */}
       <div className="grid md:grid-cols-3 gap-4 mb-8">
 
         <div className="border border-gray-700 p-5 rounded-lg">
@@ -153,7 +151,6 @@ export default function Dashboard() {
 
       </div>
 
-      {/* Create Task Form */}
       <div className="space-y-4 border border-gray-700 p-6 rounded-lg mb-10">
 
         <input
@@ -198,7 +195,6 @@ export default function Dashboard() {
         </button>
       </div>
 
-      {/* Task List */}
       <div>
         <h2 className="text-2xl font-bold mb-4">
           Tasks
