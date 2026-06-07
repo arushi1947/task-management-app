@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { supabase } from "@/lib/supabase";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
-  const [user, setUser] = useState<any>(null);
+  const router = useRouter();
 
   useEffect(() => {
     const getUser = async () => {
@@ -12,30 +13,26 @@ export default function Home() {
         data: { user },
       } = await supabase.auth.getUser();
 
-      if (user) {
-        setUser(user);
-
-        await supabase.from("users").upsert({
-          id: user.id,
-          email: user.email,
-          name: user.user_metadata?.full_name || "",
-        });
+      if (!user) {
+        router.push("/login");
+        return;
       }
+
+      await supabase.from("users").upsert({
+        id: user.id,
+        email: user.email,
+        name: user.user_metadata?.full_name || "",
+      });
+
+      router.push("/dashboard");
     };
 
     getUser();
-  }, []);
+  }, [router]);
 
   return (
     <div className="p-10">
-      {user ? (
-        <>
-          <h1 className="text-2xl font-bold">Logged In</h1>
-          <p>{user.email}</p>
-        </>
-      ) : (
-        <h1 className="text-2xl font-bold">Not Logged In</h1>
-      )}
+      Loading...
     </div>
   );
 }
