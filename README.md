@@ -4,9 +4,9 @@ A full-stack task management web application that allows users to authenticate u
 
 ## Live Demo
 
-Frontend: https://your-frontend-url.vercel.app
+Frontend: https://task-management-app-zeta-smoky.vercel.app/
 
-Backend: https://your-backend-url.up.railway.app
+Backend: https://task-management-app-production-f349.up.railway.app/
 
 
 ## Features
