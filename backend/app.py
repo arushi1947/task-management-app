@@ -2,6 +2,7 @@ from flask import Flask
 from flask_cors import CORS
 from routes.tasks import tasks_bp
 import os
+from services.email_service import send_email
 
 app = Flask(__name__)
 CORS(app)
@@ -18,12 +19,11 @@ if __name__ == "__main__":
 
 @app.route("/test-email")
 def test_email():
-    from services.email_service import send_email
 
     send_email(
-        "your_email@gmail.com",
-        "Railway Test",
-        "Testing email"
+        "YOUR_EMAIL@gmail.com",
+        "Resend Test",
+        "If you received this email, Resend is working!"
     )
 
     return {"success": True}
