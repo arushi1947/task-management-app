@@ -15,3 +15,15 @@ def home():
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
+
+@app.route("/test-email")
+def test_email():
+    from services.email_service import send_email
+
+    send_email(
+        "your_email@gmail.com",
+        "Railway Test",
+        "Testing email"
+    )
+
+    return {"success": True}

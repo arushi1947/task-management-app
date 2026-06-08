@@ -21,7 +21,7 @@ def create_task():
         .eq("id", data["assigned_to"]) \
         .single() \
         .execute()
-
+try:
     send_email(
         user.data["email"],
         "New Task Assigned",
@@ -36,6 +36,8 @@ Description: {data['description']}
 Please log in to the Task Manager to view it.
 """
     )
+except Exception as e:
+    print("Email failed:", e)
 
     return jsonify(response.data)
 
@@ -76,7 +78,7 @@ def update_task(task_id):
             .eq("id", task.data["assigned_to"]) \
             .single() \
             .execute()
-
+    try:
         send_email(
             creator.data["email"],
             "Task Completed",
@@ -88,6 +90,8 @@ def update_task(task_id):
             You can log in to Task Manager to review it.
             """
             )
+    except Exception as e:
+        print("Email failed:", e)
 
         return jsonify(response.data)
 
