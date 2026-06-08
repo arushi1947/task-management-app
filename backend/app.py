@@ -21,7 +21,7 @@ if __name__ == "__main__":
 def test_email():
 
     send_email(
-        "YOUR_EMAIL@gmail.com",
+        "srivastava.arushi0612@gmail.com",
         "Resend Test",
         "If you received this email, Resend is working!"
     )
