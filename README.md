@@ -26,7 +26,7 @@ Backend: https://your-backend-url.up.railway.app
 ### Email Notifications
 - Email notification when a task is assigned
 - Email notification when a task is completed
-- Gmail SMTP integration
+- Resend integration
 
 ### Dashboard
 - Total Tasks count
@@ -52,7 +52,7 @@ Backend: https://your-backend-url.up.railway.app
 - Google OAuth 2.0
 
 ### Email Service
-- Gmail SMTP
+- Resend
 
 ### Deployment
 - Vercel (Frontend)
@@ -87,7 +87,7 @@ Google OAuth
       v
 Authentication
 
-Gmail SMTP
+Resend
       |
       v
 Email Notifications
@@ -265,3 +265,7 @@ When a task is marked completed:
 1. Status is updated in database
 2. Completion email is triggered
 3. Assigned user receives notification
+
+Email notifications are implemented using Resend.
+
+For testing, Resend's free-tier restriction allows sending only to the verified email address until a custom domain is verified.
